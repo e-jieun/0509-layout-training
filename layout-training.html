@@ -16,8 +16,8 @@
       align-items: center;
       justify-content: space-between;
       list-style-type: none;
-      /* overflow: hidden; */
-    /* } */
+      overflow: hidden;
+      } */
     /* #root>ul>li{
       width: 200px;
       height: 200px;
@@ -51,7 +51,7 @@
       console.log(li);
 
       // ul style
-      ul.setAttribute('style','width: 50vh; height: 50vh; border: 1px solid black; display: flex; align-items: center; justify-content: space-around; list-style-type: none;');
+      ul.setAttribute('style','width: 50vh; height: 50vh; border: 1px solid black; display: flex; align-items: center; justify-content: center; list-style-type: none; overflow: hidden;');
 
       // li style - li 공통적용 부분
       for(let i = 0; i < li.length; i++){
@@ -59,23 +59,60 @@
         li[i].style.height = '200px';
         li[i].style.backgroundColor = '#c4c4c4';
         li[i].style.position = 'absolute';
-        li[i].style.zIndex = '-1';
-        li[i].style.margin = '20px';
+        li[i].style.margin = '30px';
       }
+      console.log(li[0]);
+      console.log(li[1]);
+      console.log(li[2]);
+      
+      let zIndexValue = 3;
+      let bgColorArr = ['red', 'blue', 'green'];
+      for(let i = 0; i < li.length; i++){
+        li[i].style.backgroundColor = bgColorArr[i];
+        // li[0]의 z-index값 3
+        // li[1]의 z-index값 2
+        // li[2]의 z-index값 1
+        li[i].style.zIndex = zIndexValue--;
+      }
+      
+      let interval = 500;
+      let click = 0;
 
-      // 시간이 지나면 다음 li로 넘어가는 알고리즘을 만들어 줄 부분
-      // addEventListener() 등을 사용해야
-      // 시간이 지날 때마다 position을 옯겨주면 될 것 같은데...
-      ul.addEventListener('mouseover', function(){
-        // li가 계속 생겨서 옆으로 이동하도록 해야한다, li에 포지션을 옆으로 이동시키도록
-        const createLi = document.createElement('li');
-        console.log(create)
+      // ul에 클릭 이벤트를 생성해준다
+      ul.addEventListener('click', function(){
+        // console.log('hi'); // 클릭 이벤트가 잘 작동됨
+
+        // 1초 주기로 변화할 slide
+        let slide = setInterval(function(){
+          // !이 부분에서 1을 더해줄 것이 아니라 if문이 실행될 때마다 다음 배열로 넘어가도록 클릭값을 1을 더해주는 편이 순차적으로 잘 실행됨
+          // click값을 1 더해준다
+          // click++;
+          // 인덱스가 0인 경우
+          if(click%li.length === 0){
+            // zindex
+            li[click%li.length].style.zIndex = zIndexValue--;
+            console.log(click%li.length);
+            click++;
+          // 인덱스가 1인 경우
+          } else if(click%li.length === 1){
+            li[click%li.length].style.zIndex = zIndexValue--;
+            console.log(click%li.length);
+            click++;
+          // 인덱스가 0, 1이 아닌 2인 경우
+          } else{
+            li[click%li.length].style.zIndex = zIndexValue--;
+            console.log(click%li.length);
+            click++;
+          }
+          // 슬라이드를 3번 반복해준다
+          if(click > li.length*10){
+            clearInterval(slide);
+            console.log(click);
+            console.log('finish');
+          }
+        }, interval);
         
       });
-      // clearInterval(); 해줄 부분
-      // ul.addEventListener('click', function(){
-
-      // });
 
 
 
