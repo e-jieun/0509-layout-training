@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{margin: 0; padding: 0; box-sizing: border-box;}
+    /* #root{width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center;} */
+    /* #root>ul{
+      width: 50vh;
+      height: 50vh;
+      border: 1px solid black;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style-type: none;
+      /* overflow: hidden; */
+    /* } */
+    /* #root>ul>li{
+      width: 200px;
+      height: 200px;
+      background-color: #c4c4c4;
+      border: 1px solid #fff;
+      position: absolute;
+    } */
+  </style>
+</head>
+<body>
+  <div id="root">
+    <ul>
+      <li>item-1</li>
+      <li>item-2</li>
+      <li>item-3</li>
+    </ul>
+    <script>
+      // get #root
+      const root = document.getElementById('root');
+      console.log(root);
+      console.log(root.style);
+      // root style
+      root.setAttribute('style','width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center;');
+
+      // ul 식별
+      const ul = document.querySelector('ul');
+      console.log(ul);
+      // console.log(ul.children);
+      // li 식별
+      const li = ul.children;
+      console.log(li);
+
+      // ul style
+      ul.setAttribute('style','width: 50vh; height: 50vh; border: 1px solid black; display: flex; align-items: center; justify-content: space-around; list-style-type: none;');
+
+      // li style - li 공통적용 부분
+      for(let i = 0; i < li.length; i++){
+        li[i].style.minWidth = '200px';
+        li[i].style.height = '200px';
+        li[i].style.backgroundColor = '#c4c4c4';
+        li[i].style.position = 'absolute';
+        li[i].style.zIndex = '-1';
+        li[i].style.margin = '20px';
+      }
+
+      // 시간이 지나면 다음 li로 넘어가는 알고리즘을 만들어 줄 부분
+      // addEventListener() 등을 사용해야
+      // 시간이 지날 때마다 position을 옯겨주면 될 것 같은데...
+      ul.addEventListener('mouseover', function(){
+        // li가 계속 생겨서 옆으로 이동하도록 해야한다, li에 포지션을 옆으로 이동시키도록
+        const createLi = document.createElement('li');
+        console.log(create)
+        
+      });
+      // clearInterval(); 해줄 부분
+      // ul.addEventListener('click', function(){
+
+      // });
+
+
+
+    </script>
+  </div>
+</body>
+</html>
